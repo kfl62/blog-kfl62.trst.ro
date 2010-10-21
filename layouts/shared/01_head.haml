@@ -1,0 +1,13 @@
+%head
+  %title= item[:title]
+  %meta{:charset => "UTF-8"}
+  %meta{:name => "name", :content => (meta_name(item) rescue item[:name])}
+  %meta{:name => "description", :content => (meta_description(item) rescue item[:description])}
+  %meta{:name => "keywords", :content => (meta_keywords(item) rescue item[:keywords])}
+  %link{:href => "/stylesheets/screen.css",
+        :media => "screen",
+        :rel => "stylesheet",
+        :type => "text/css"}
+  %script{:language => "javascript",
+          :src => "http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js",
+          :type => "text/javascript"}
