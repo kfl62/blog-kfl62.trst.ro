@@ -1,2 +1,42 @@
-#main
-  color: blue
+@import partials/base
+@import compass/css3
+@import compass//layout/sticky-footer
+@import blueprint/grid
+$blueprint_grid_columns: 9
+$blueprint_grid_margin: 10px
+$blueprint_grid_width: (800 - 8 * $blueprint_grid_margin) / $blueprint_grid_columns
+$blueprint-container-size: 800px
+
+body
+  background:
+    color: rgba(5,5,5,1)
+    image: image_url(unquote("/images/background_gradient.png"))
+    attachment: fixed
+    position: center
+    repeat: repeat-y
+  color: rgba(255,255,255,1)
+
+.wrap
+  +container
+#content
+  +column(6)
+  background:
+    color: transparent
+[class~=em], [class~=it]
+  font-style: italic
+[class~=bo], [class~=st]
+  font-weight: bold
+[class~=small]
+  font-size: 0.8em
+[class~=ju]
+  text-align: justify
+[class~=ce]
+  text-align: center
+[class~=ri]
+  text-align: right
+[class~=in]
+  text-indent: 2.0em
+[class~=flri]
+  float: right
+
+@import partials/header
