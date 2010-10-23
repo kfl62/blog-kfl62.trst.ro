@@ -1,6 +1,4 @@
 @import partials/base
-@import compass/css3
-@import compass//layout/sticky-footer
 @import blueprint/grid
 $blueprint_grid_columns: 9
 $blueprint_grid_margin: 10px
@@ -22,6 +20,8 @@ body
   +column(6)
   background:
     color: transparent
+#sidebar
+  +column(3,last)
 [class~=em], [class~=it]
   font-style: italic
 [class~=bo], [class~=st]
@@ -38,5 +38,12 @@ body
   text-indent: 2.0em
 [class~=flri]
   float: right
+h1,h2,h3,h4,h5,h6
+  color: rgba(255,0,0,1)
 
 @import partials/header
+@import partials/menu
+@import partials/content
+@import partials/sidebar
+@import partials/footer
+

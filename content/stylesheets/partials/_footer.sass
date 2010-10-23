@@ -1,0 +1,11 @@
+@import compass/css3
+@import compass/layout/sticky-footer
++sticky-footer(25px, unquote("#main"), unquote("#main_footer"), unquote("#footer"))
+
+#footer
+  +border-top-radius(30px)
+  +linear-gradient(color-stops(rgba(5,5,5,0), rgba(5,5,5,0.5)))
+  width: 300px
+  cursor: pointer
+  p
+    margin: 5px 0px 0px
