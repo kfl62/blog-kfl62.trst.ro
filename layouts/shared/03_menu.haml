@@ -1,4 +1,6 @@
 %ul.buttongroup
-  %li.hover.active Home
-  %li Something
-  %li About
+  - @items.each do |page|
+    - if item[:lang] == page[:lang] && page[:menu] && page.path != "/"
+      %li{:class => ("active" if item.identifier == page.identifier)}
+        %a{:class => ("active" if item.identifier == page.identifier), :href => page.path, :title => page[:menu_title]}
+          = page[:menu_label]
