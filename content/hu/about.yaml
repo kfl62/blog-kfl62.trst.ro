@@ -1,0 +1,10 @@
+lang:           "hu"
+title:          "Rólunk"
+keywords:       "Kulcs szavak"
+description:    "Leírás"
+menu_label:     "Rólunk"
+menu_title:     "Egypár szóban a weboldalról"
+kind:           "page"
+menu:           true
+order:          2
+

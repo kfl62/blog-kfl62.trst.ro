@@ -1,0 +1,10 @@
+lang:           "hu"
+title:          "Kezdő lap"
+keywords:       "Kulcs szavak"
+description:    "Leírás"
+menu_label:     "Kezdő lap"
+menu_title:     "Fő oldal"
+kind:           "page"
+menu:           true
+order:          1
+

@@ -1,0 +1,10 @@
+lang:           "en"
+title:          "About"
+keywords:       "Some keywords"
+description:    "Some description"
+menu_label:     "About"
+menu_title:     "A few words about this site"
+kind:           "page"
+menu:           true
+order:          2
+

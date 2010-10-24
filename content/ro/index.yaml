@@ -1,0 +1,10 @@
+lang:           "ro"
+title:          "Home"
+keywords:       "Cuvinte cheie"
+description:    "Descriere"
+menu_label:     "Home"
+menu_title:     "Pagina principală"
+kind:           "page"
+menu:           true
+order:          1
+

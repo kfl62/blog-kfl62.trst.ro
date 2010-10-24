@@ -1,0 +1,10 @@
+lang:           "ro"
+title:          "Despre"
+keywords:       "Cuvinte cheie"
+description:    "Descriere"
+menu_label:     "Despre"
+menu_title:     "Câteva cuvinte despre acest site"
+kind:           "page"
+menu:           true
+order:          1
+

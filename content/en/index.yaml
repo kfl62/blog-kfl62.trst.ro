@@ -1,0 +1,10 @@
+lang:           "en"
+title:          "Home"
+keywords:       "Some keywords"
+description:    "Some description"
+menu_label:     "Home"
+menu_title:     "Main page"
+kind:           "page"
+menu:           true
+order:          1
+
