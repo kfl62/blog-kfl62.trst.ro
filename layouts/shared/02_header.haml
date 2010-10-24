@@ -2,3 +2,10 @@
   %a{:href => "/"}=  t("blog.title") rescue "kfl62's blog"
 %span.blog-sponsor.bo.flri
   %a{:href => "http://www.arta-curateniei.ro"}= t("blog.title") rescue "Sponsor"
+%span.blog-lang.flri
+  %a{:href => "/ro/#{item.path.slice(/[^\/]*$/)}"}
+    %img{:src => "/images/ro.png"}
+  %a{:href => "/hu/#{item.path.slice(/[^\/]*$/)}"}
+    %img{:src => "/images/hu.png"}
+  %a{:href => "/en/#{item.path.slice(/[^\/]*$/)}"}
+    %img{:src => "/images/en.png"}
