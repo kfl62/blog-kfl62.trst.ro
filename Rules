@@ -30,9 +30,14 @@ route '/stylesheets/*/' do
   item.identifier.chop + '.css'
 end
 
+route '/*/*/' do
+  item.identifier.chop + '.html'
+end
+
 route '*' do
   item.identifier + 'index.html'
 end
+
 
 layout '*', :haml, :format => :html5, :attr_wrapper => '"'
 
