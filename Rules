@@ -1,28 +1,42 @@
 #!/usr/bin/env ruby
+# encoding: utf-8
+=begin
+Some description here
+=end
 
-# A few helpful tips about the Rules file:
-#
-# * The order of rules is important: for each item, only the first matching
-#   rule is applied.
-#
-# * Item identifiers start and end with a slash (e.g. “/about/” for the file
-#   “content/about.html”). To select all children, grandchildren, … of an
-#   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
-#   because “*” matches zero or more characters.
+preprocess do
+  # authors may unpublish items by setting meta attribute publish: false
+  items.delete_if { |item| item[:publish] == false }
+  # create tag pages
+  #create_tag_pages
+  # maintain timestamps
+  add_update_item_attributes
+end
 
 compile '/stylesheets/*/' do
   filter :sass, Compass.sass_engine_options
 end
 
 compile '*' do
-  if item[:extension] == "haml"
+  # item[:extension] returns 'html.erb' for multi-dotted filename
+  ext = item[:extension].nil? ? nil : item[:extension].split('.').last
+  # handle extensions
+  if ext == 'erb'
+    filter :erb
+  elsif ext == 'haml' || ext.nil?
     filter :haml
-    layout 'default'
+  elsif ext == 'md' || ext == 'markdown'
+    filter :erb
+    filter :rdiscount
+  else
+    raise "Filter is not configured for #{item.identifier} in Rules file."
   end
+  # use layouts with .html extension or layout specified in meta
+  item[:layout] = "none" unless item[:layout] || File.extname(route_path(item)) == '.html'
+  layout 'default' unless item[:layout] == "none"
 end
 
 route '/stylesheets/partials/_*/' do
-  # don't output partials, so return nil
   nil
 end
 
@@ -30,12 +44,8 @@ route '/stylesheets/*/' do
   item.identifier.chop + '.css'
 end
 
-route '/*/*/' do
-  item.identifier.chop + '.html'
-end
-
 route '*' do
-  item.identifier + 'index.html'
+  route_path(item)
 end
 
 

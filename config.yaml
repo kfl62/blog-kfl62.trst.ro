@@ -2,9 +2,27 @@ text_extensions: [ 'css', 'erb', 'haml', 'htm', 'html', 'js', 'less', 'markdown'
 output_dir: public
 index_filenames: [ 'index.html' ]
 enable_output_diff: false
-
 data_sources:
   -
     type: filesystem_unified
     items_root: /
     layouts_root: /
+# Custom settings
+deploy:
+  default:
+    dst: "mgutz_com:www/nanoc3_blog"
+    options: ['-ave ssh', '--exclude=.DS_Store', '--exclude=*~']
+# domain to which this site is deployed
+base_url: http://kfl62.trst.ro
+# used in title
+site_name: "kfl62-blog"
+# number of excerpted posts to display on front
+excerpt_count: 3
+# DISQUS Site Shortname. Comment out to disable.
+disqus_shortname: kfl62
+disqus_developer: true
+#google analitics
+google_analytics:
+  domain: trst.ro
+  site_id: UA-9655468-1
+
