@@ -1,20 +1,26 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    activesupport (3.0.1)
     compass (0.10.5)
       haml (>= 3.0.4)
     cri (1.0.1)
     haml (3.0.22)
+    i18n (0.4.1)
     mime-types (1.16)
     nanoc (3.1.5)
       nanoc3 (>= 3.1.5)
     nanoc3 (3.1.5)
       cri (>= 1.0.0)
+    rdiscount (1.6.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
   compass (~> 0.10)
+  i18n
   mime-types
   nanoc
+  rdiscount
