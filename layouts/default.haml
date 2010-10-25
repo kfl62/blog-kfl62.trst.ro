@@ -1,3 +1,5 @@
+:ruby
+  content = find_and_preserve(yield)
 !!!
 %html
   = render "/shared/01_head"
@@ -8,7 +10,7 @@
       %nav#menu
         = render('/shared/03_menu')
       %section#content
-        = yield
+        = item[:kind] == "article" ? render('shared/06_article', :item => item, :content => yield) : yield
       %section#sidebar
         = render('/shared/04_sidebar')
       %section#main_footer.wrap

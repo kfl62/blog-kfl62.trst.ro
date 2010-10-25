@@ -1,0 +1,8 @@
+%h1= item[:title]
+%p.meta
+  = article_meta(item)
+  %a(href="#{route_path(item)}#disqus_thread")
+%article
+  != content
+- if disqus_shortname
+  = render('/shared/07_disqus', :item => item)
