@@ -3,9 +3,7 @@
 %span.blog-sponsor.bo.flri
   %a{:href => "http://www.arta-curateniei.ro"}= t("blog.title") rescue "Sponsor"
 %span.blog-lang.flri
-  %a{:href => "/ro/#{item.path.slice(/[^\/]*$/)}"}
-    %img{:src => "/images/ro.png"}
-  %a{:href => "/hu/#{item.path.slice(/[^\/]*$/)}"}
-    %img{:src => "/images/hu.png"}
-  %a{:href => "/en/#{item.path.slice(/[^\/]*$/)}"}
-    %img{:src => "/images/en.png"}
+  - ["ro","hu","en"].each do |lang|
+    %a{:href => translate_path(lang,item)}
+      %img{:src => "/images/#{lang}.png"}
+
