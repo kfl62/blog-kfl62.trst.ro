@@ -53,8 +53,8 @@ created_at: #{@ymd}
 kind: article
 publish: true
 lang: #{@lang}
-tags: [misc]
-excerpt: 
+tags: [other]
+_: 
 ---
 
 #{initial_content(lang)}

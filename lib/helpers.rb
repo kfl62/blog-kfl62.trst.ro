@@ -3,8 +3,9 @@
 Some description here
 =end
 
-include Nanoc3::Helpers::Rendering
 include Nanoc3::Helpers::Blogging
+include Nanoc3::Helpers::Rendering
+include Nanoc3::Helpers::Text
 include Nanoc3::Helpers::XMLSitemap
 
 def route_path(item)
@@ -48,6 +49,26 @@ def article_meta(item)
   else
     return ["Published at",date,sep,"in",tags,sep].join(" ")
   end
+end
+
+def article_more(item)
+  text = link = ""
+  case item[:lang]
+  when "ro"
+    text = "Fragment: "
+    link = "...articol complet..."
+  when "hu"
+    text = "Kivonat: "
+    link = "...a cikk..."
+  else
+    text = "Excerpt: "
+    link = "...read more..."
+  end
+  return "#{text} <span class=\"flri\"><a href=\"#{route_path(item)}\" title=\"#{item[:title]}\"}>#{link}</a></span>"
+end
+
+def article_excerpt(item)
+  excerptize(item.compiled_content, {:length => 500})
 end
 
 # Creates in-memory tag pages from partial: layouts/_tag_page.haml

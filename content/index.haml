@@ -1,6 +1,9 @@
 - sorted_articles[0,excerpt_count].each do |article|
   - if item[:lang] == article[:lang]
     %h1= article[:title]
+    %p.meta
+      = article_meta(article)
     %article
-      %span.meta= [item[:published_by], article[:author], item[:published_in], article[:tags].join(","), item[:published_on], article[:created_at]].join(" ")
-      %a{:href => route_path(article)} ...more...
+      %p.excerpt= article_more(article)
+      = article_excerpt(article)
+
