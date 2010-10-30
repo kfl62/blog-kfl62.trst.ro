@@ -1,7 +1,7 @@
 %span.blog-title.bo
   %a{:href => "/"}=  t("blog.title") rescue "kfl62's blog"
 %span.blog-sponsor.bo.flri
-  %a{:href => "http://www.arta-curateniei.ro"}= t("blog.title") rescue "Sponsor"
+  %a{:href => "http://www.arta-curateniei.ro"}= t("blog.sponsor") rescue "Sponsor"
 %span.blog-lang.flri
   - ["ro","hu","en"].each do |lang|
     %a{:href => translate_path(lang,item)}

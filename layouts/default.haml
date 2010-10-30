@@ -1,4 +1,5 @@
 :ruby
+  I18n.locale = item[:lang]
   content = find_and_preserve(yield)
 !!!
 %html
@@ -10,7 +11,7 @@
       %nav#menu
         = render('/shared/03_menu')
       %section#content
-        = item[:kind] == "article" ? render('shared/06_article', :item => item, :content => yield) : yield
+        = item[:kind] == "article" ? render('shared/06_article', :item => item, :content => content) : content
       %section#sidebar
         = render('/shared/04_sidebar')
       %section#main_footer.wrap
