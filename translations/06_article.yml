@@ -1,0 +1,22 @@
+ro:
+  article:
+    meta_01: "Publicat la data de"
+    meta_02: "în categoria"
+    meta_03: ""
+    excerpt_01: "Fragment: "
+    excerpt_02: "...articol complet..."
+hu:
+  article:
+    meta_01: "Közzétéve"
+    meta_02: "a/az"
+    meta_03: "kategoriában"
+    excerpt_01: "Kivonat: "
+    excerpt_02: "...a cikk..."
+en:
+  article:
+    meta_01: "Published at"
+    meta_02: "in"
+    meta_03: ""
+    excerpt_01: "Excerpt: "
+    excerpt_02: "...read more..."
+

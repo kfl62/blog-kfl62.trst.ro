@@ -1,0 +1,13 @@
+ro:
+  tags:
+    title: "Cuvânt cheie"
+    h1: "Articole care conţin cuvântul cheie \"{{tag}}\""
+hu:
+  tags:
+    title: "Kulcsszó"
+    h1: "\"{{tag}}\" kulcsszóval jelölt cikkek"
+en:
+  tags:
+    title: "Tag"
+    h1: "Articles tagged with \"{{tag}}\""
+

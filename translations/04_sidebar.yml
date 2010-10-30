@@ -1,0 +1,28 @@
+ro:
+  sidebar:
+    recent_posts: "Articole recente"
+    archives: "Arhive"
+    month: ["", "Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"]
+    categories: "Categorii"
+    tags: "Cuvinte cheie"
+    rss_01: "Atom Articole"
+    rss_02: "Ce este asta?"
+hu:
+  sidebar:
+    recent_posts: "Legutóbbi bejegyzések"
+    archives: "Archívum"
+    month: ["", "Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December"]
+    categories: "Kategoriák"
+    tags: "Kulcsszavak"
+    rss_01: "Atom Cikkek"
+    rss_02: "Mi a csoda ez?"
+en:
+  sidebar:
+    recent_posts: "Recent posts"
+    archives: "Archives"
+    month: ["", "January", "February", "March", "April", "May", "June", "Julie", "August", "September", "October", "November", "December"]
+    categories: "Categories"
+    tags: "Tags"
+    rss_01: "Subscribe posts via Atom"
+    rss_02: "What is this?"
+
