@@ -1,9 +1,11 @@
-- sorted_articles[0,excerpt_count].each do |article|
-  - if item[:lang] == article[:lang]
+- i = 0
+- sorted_articles.each do |article|
+  - if item[:lang] == article[:lang] && i < excerpt_count
     %h1= article[:title]
     %p.meta
       = article_meta(article)
     %article
       %p.excerpt= article_more(article)
       = article_excerpt(article)
+    - i += 1
 
