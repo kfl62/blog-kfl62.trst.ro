@@ -8,10 +8,14 @@ require 'thin'
 require 'bundler/setup'
 require 'nanoc3/tasks'
 require 'nanoc3/cli'
+require 'i18n'
 require 'compass'
 require 'rdiscount'
+require 'builder'
 
 Compass.add_project_configuration('./lib/compass.rb')
+I18n.load_path += Dir.glob(File.join('translations','*.yml'))
+I18n.default_locale = :en
 
 desc "Runs autocompile/preview"
 task :preview do
@@ -51,13 +55,14 @@ namespace :create do
 title: "#{title.titleize}"
 created_at: #{@ymd}
 kind: article
-publish: true
+publish: true.
 lang: #{@lang}
-tags: [other]
+category: #{initial_content(@lang)[0]}
+tags: []
 _: 
 ---
 
-#{initial_content(lang)}
+#{initial_content(@lang)[1]}
 TEMPLATE
 
       FileUtils.mkdir_p(path) if !File.exists?(path)
@@ -76,11 +81,11 @@ TEMPLATE
   def initial_content(lang)
     case lang
     when "en"
-      return "TODO: Add content to....."
+      return ["Other", "TODO: Add content to....."]
     when "hu"
-      return "Sajnos még nincsen fordítás!<br><br>A cikkek eredetileg angol nyelven vannak írva, tehát angol nyelvű verzió biztosan létezik:). Esetleg megprobálhatja a román nyelvű verziót is!"
+      return ["Egyéb", "Sajnos még nincsen fordítás!<br><br>A cikkek eredetileg angol nyelven vannak írva, tehát angol nyelvű verzió biztosan létezik:). Esetleg megprobálhatja a román nyelvű verziót is!"]
     when "ro"
-      return "Din păcate pagina încă nu este tradusă!<br><br>Paginile sunt scrise iniţial în limba engleză, deci versiunea engleză există :). Eventual mai puteţi încerca versiunea în limba maghiară!"
+      return ["Altele", "Din păcate pagina încă nu este tradusă!<br><br>Paginile sunt scrise iniţial în limba engleză, deci versiunea engleză există :). Eventual mai puteţi încerca versiunea în limba maghiară!"]
     end
   end
 end

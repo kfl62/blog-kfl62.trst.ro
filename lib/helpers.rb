@@ -38,51 +38,43 @@ def translate_path(lang,item)
 end
 
 def article_meta(item)
+  I18n.locale = item[:lang]
   date = item[:created_at]
-  tags = item[:tags].join(" ,")
+  category = item[:category]
   sep = "&#149;"
-  case item[:lang]
-  when "ro"
-    return ["Publicat la data de",date,sep,"în categoria",tags,sep].join(" ")
-  when "hu"
-    return ["Közzétéve",date,sep,"a",tags,"kategoriában",sep].join(" ")
-  else
-    return ["Published at",date,sep,"in",tags,sep].join(" ")
-  end
+  return [t('article.meta_01'),date,sep,t('article.meta_02'),"<b>#{category}</b>",t('article.meta_03'),sep].join(" ")
 end
 
 def article_more(item)
-  text = link = ""
-  case item[:lang]
-  when "ro"
-    text = "Fragment: "
-    link = "...articol complet..."
-  when "hu"
-    text = "Kivonat: "
-    link = "...a cikk..."
-  else
-    text = "Excerpt: "
-    link = "...read more..."
-  end
-  return "#{text} <span class=\"flri\"><a href=\"#{route_path(item)}\" title=\"#{item[:title]}\"}>#{link}</a></span>"
+  I18n.locale = item[:lang]
+  return "#{t('article.excerpt_01')} <span class=\"flri\"><a href=\"#{route_path(item)}\" title=\"#{item[:title]}\"}>#{t('article.excerpt_02')}</a></span>"
 end
 
-def article_excerpt(item)
-  excerptize(item.compiled_content, {:length => 500})
+def article_excerpt(item,length=500)
+  excerptize(item.compiled_content, {:length => length})
 end
 
-# Creates in-memory tag pages from partial: layouts/_tag_page.haml
 def create_tag_pages
-  tag_set(items).each do |tag|
-    items << Nanoc3::Item.new(
-      "= render('_tag_page', :tag => '#{tag}')",           # use locals to pass data
-      { :title => "Category: #{tag}", :is_hidden => true}, # do not include in sitemap.xml
-      "/tags/#{tag}/",                                     # identifier
-      :binary => false
-    )
+  %w{ro hu en}.each do |lang|
+    I18n.locale = lang
+    tag_set(articles_in_lang(lang)).each do |tag|
+      items << Nanoc3::Item.new(
+        "= render('/shared/08_tag_page', :tag => '#{tag}')",
+        { :title => "#{t('tags.title')}: #{tag}", :is_hidden => true, :lang => lang},
+        "/#{lang}/tags/#{tag}/",
+        :binary => false
+      )
+    end
   end
 end
 
+def articles_in_lang(lang)
+  retval = []
+  sorted_articles.each do |a|
+    retval << a if a[:lang] == lang
+  end
+  retval
+end
 
 def add_update_item_attributes
   changes = Blog::FileChanges.new
@@ -141,6 +133,56 @@ def articles_by_year_month
   result
 end
 
+def articles_nr_year(lang)
+  nr = 0
+  articles_by_year_month.each do |y,mh|
+    mh.each do |m,aa|
+      aa.each do |a|
+        if lang == a[:lang]
+          nr += 1
+        end
+      end
+    end
+  end
+  return nr
+end
+
+def articles_nr_month(year,month,lang)
+  nr = 0
+  articles_by_year_month[year][month].each do |a|
+    if lang == a[:lang]
+      nr += 1
+    end
+  end
+  return nr
+end
+
+def articles_by_category(lang)
+  result = {}
+  a = nil
+  articles.each do |article|
+    if lang == article[:lang]
+      current_category = article[:category]
+      if result[current_category].nil?
+        a = result[current_category] = []
+      else
+        a = result[current_category]
+      end
+      a << article
+    end
+  end
+  result
+end
+
+def tags_cloud(lang)
+  retval = []
+  tags = count_tags(articles_in_lang(lang))
+  tags.sort_by{|k,v| k}.each do |tag|
+    retval << "<a href='/#{lang}/tags/#{tag[0]}/'>#{tag[0]}(#{tag[1]})</a>"
+  end
+  retval
+end
+
 def is_front_page?
     @item.identifier == '/'
 end
@@ -167,6 +209,10 @@ end
 
 def to_month_s(month)
   Date.new(2010, month).strftime("%B")
+end
+
+def t(string, options={})
+  I18n.translate(string,options)
 end
 
 def gist(id,file=nil)
