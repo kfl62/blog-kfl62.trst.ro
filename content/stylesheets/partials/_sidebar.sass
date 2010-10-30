@@ -9,4 +9,44 @@
     margin-bottom: 10px
     /* make firefox hapy */
     display: block
-
+    p
+      margin-bottom: 5px
+    a
+      color: rgb(180, 210, 250)
+      font:
+        style: italic
+      text-decoration: none
+      &:hover, &.active
+        color: rgb(255, 255, 255)
+      &.atom, &.help
+        background:
+          image: image_url(unquote("/images/atom.gif"))
+          position: 0 50%
+          repeat: no-repeat
+        padding: 1px 0px 1px 20px
+      &.help
+        background:
+          image: image_url(unquote("/images/help.gif"))
+    h4
+      font:
+        size: 1.2em
+        style: italic
+    ul
+      list-style: none
+      margin: 5px 0px 0px
+      padding-left: 0px
+      li
+        margin: 0px
+        padding: 1px 0px
+        &.trigger
+          color: rgb(180, 210, 250)
+          &:hover
+            color: rgb(255, 255, 255)
+            cursor: pointer
+    ul.ul-year, ul.ul-month, ul.ul-article, ul.ul-category
+      margin: 0px 0px 0px 5px
+    ul.ul-year ul.ul-article,ul.ul-category ul.ul-article 
+      li
+        display: list-item
+        &.hidden
+          display: none

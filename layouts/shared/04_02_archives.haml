@@ -1,0 +1,15 @@
+%h4= t('sidebar.archives')
+%ul.ul-year
+  - articles_by_year_month.each do |year, month_h|
+    %li
+      = year.to_s + "(#{articles_nr_year(item[:lang])})"
+      %ul.ul-month
+        - month_h.each do |month, item_a|
+          %li.trigger
+            = t('sidebar.month')[month] + "(#{articles_nr_month(year,month,item[:lang])})"
+            %ul.ul-article
+              - item_a.each do |article|
+                -if article[:lang] == item[:lang]
+                  %li
+                    %a{:href => route_path(article)}= article[:title]
+

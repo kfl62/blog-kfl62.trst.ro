@@ -1,0 +1,6 @@
+:ruby
+  tags = tags_cloud(item[:lang])
+- unless tags.empty?
+  %h4= t('sidebar.tags')
+  %p= tags.join("&nbsp;&#149;&nbsp;")
+

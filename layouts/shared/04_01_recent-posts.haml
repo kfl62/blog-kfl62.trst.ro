@@ -1,0 +1,9 @@
+%h4= t('sidebar.recent_posts')
+%ul.ul-article
+  - i = 0
+  - sorted_articles.each do |article|
+    -if article[:lang] == item[:lang] && i < excerpt_count
+      %li
+        %a{:href => translate_path(article[:lang],article)}= article[:title]
+      - i += 1
+        

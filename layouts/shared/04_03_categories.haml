@@ -1,0 +1,10 @@
+%h4= t('sidebar.categories')
+%ul.ul-category
+  - articles_by_category(item[:lang]).each_pair do |category,article|
+    %li.trigger
+      = category + "(#{article.size})"
+      %ul.ul-article
+        - article.each do |a|
+          %li
+            %a{:href => route_path(a)}=a[:title]
+

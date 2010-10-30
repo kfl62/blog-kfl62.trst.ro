@@ -1,0 +1,10 @@
+%h4
+  = t('tags.h1', :tag => tag.capitalize)
+
+%article.tag-page
+  - items_with_tag(tag).each do |item|
+    %h4
+      %a{:href => route_path(item)}= "&laquo; #{item[:title]}"
+    %p
+      != strip_html(article_excerpt(item,50)) + ' ...'
+
